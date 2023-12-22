@@ -1,88 +1,80 @@
-import { useEffect, useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 
-function Userinfo(){
-    const [data,setData]=useState([])
-    const [userdata,setUserdata]=useState([])
+function Userinfo() {
+  const [data, setData] = useState({
+    id:"",
+    name:"",
+    body:"",
+  });
 
-    // const touser={
-    //     id: 1,
-    //     name: "Leanne Graham",
-    //     username: "Bret",
-    //     email: "Sincere@april.biz",
-    //     address: {
-    //       street: "Kulas Light",
-    //       suite: "Apt. 556",
-    //       city: "Gwenborough",
-    //       zipcode: "92998-3874",
-    //       geo: {
-    //         lat: "-37.3159",
-    //         lng: "81.1496"
-    //       }
-    //     },
-    //     phone: "1-770-736-8031 x56442",
-    //     website: "hildegard.org",
-    //     company: {
-    //       name: "Romaguera-Crona",
-    //       catchPhrase: "Multi-layered client-server neural-net",
-    //       bs: "harness real-time e-markets"
-    //     }
-    //   }
-      // const getUserdata=()=>{
-      //   axios.get("https://jsonplaceholder.typicode.com/users")
-      //   .then(res=>res.userdata)
-      //   .then(userdata=>setUserdata(userdata))
-      // }
-      // useEffect(()=>(getUserdata(),[]))
-      // console.log({userdata})
+  const [edit,setEdit]= useState(false)
 
-      // const post1=()=>{
-      //   axios.post("https://jsonplaceholder.typicode.com/users",touser)
-      // }
-      // const getpost = (id, callback) => {
-      //   const elements = touser.find((elements) => elements.id === id);
-      //   if (elements) {
-      //       document.getElementById('id')=elements
-      //   } else {
-      //     callback("not found", undefined);
-      //   }
-      // };
-      // console.log({getpost})
-      
-      let a=window.location.hash.split("#")[1]
+  let input = window.location.hash.split("#")[1];
 
-    const user={
-        userId: 1,
-        id: 1,
-        title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-        body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-    }
-    const getData=()=>{
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${a}`)
-        .then(res=>res.data)
-        .then(data=>setData([data]))
-    }
-    useEffect(()=>(getData()),[])
-    console.log({data})
-    const post=()=>{
-        axios.post("https://jsonplaceholder.typicode.com/posts",user)
+  const getData = () => {
+    axios
+      .get(`https://jsonplaceholder.typicode.com/comments/${input}`)
+      .then((res) => setData(res.data));
+  };
 
-    }
-    return(
-        <div>
-        <table >
-        
-            <tr><th>Id</th>
-            <th>Title</th>
-            <th>body</th></tr>
-            {data.map((d)=><tr>
-                            <td>{d.id}</td>
-                            <td>{d.title}</td>
-                            <td>{d.body}</td></tr>)}
-        </table>
+  useEffect(() => 
+    getData()
+  , []);
+
+  const post = (id) => {
+    axios
+      .put(`https://jsonplaceholder.typicode.com/comments/${id}`, data);
+     
+  };
+
+  return (
+    <div className="row">
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ height: "100vh" }}
+      >
+        <div className="col-sm-3">
+          <Card>
+            <Card.Header>Form</Card.Header>
+            <Card.Body>
+              <span>Name</span>
+              <input
+                type="text"
+                value={data.name}
+                onChange={(e) => {
+                  setData((o) => {
+                    return {
+                      ...o,
+                      name: e.target.value,
+                    };
+                  });
+                }}
+              ></input>
+              <span>email</span>
+              <input
+                type="email"
+                value={data.email}
+                onChange={(e) => {
+                  setData((o) => {
+                    //console.log({...o})
+                    return { ...o, email: e.target.value };
+                  });
+                }}
+              ></input>
+              <center>
+                <Button variant="primary" onClick={() => post(data.id)}>
+                  Edit
+                </Button>
+              </center>
+            </Card.Body>
+          </Card>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
 export default Userinfo;

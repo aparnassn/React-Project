@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
+import App from "./storedata";
 import reportWebVitals from "./reportWebVitals";
 import Form from "./form";
 import Login from "./login";
@@ -19,6 +19,16 @@ import Userinfo from "./userinfo";
 import Practicecard from "./practicecard";
 import Practiceinfo from "./practiceinfo";
 import Storedata from "./storedata";
+import Showcontent from "./showcontent";
+import Accordionuse from "./accordionuse";
+import Formikuse from "./formikuse";
+import Formikpractice from "./formikpractice";
+import HookCounterOne from "./HookCounterOne";
+import HookCounter from "./HookCounter";
+import HookMouse from "./HookMouse";
+import MouseContainer from "./MouseContainer";
+import IntervalHookCounter from "./IntervalHookCounter";
+import DataFetching from "./DataFetching";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 
@@ -44,9 +54,20 @@ root.render(
         <Route path="/card" element={<Practicecard />}/>
         <Route path="/info" element={<Practiceinfo />}/>
         <Route path="/storedata" element={<Storedata/>}/>
+        <Route path="/showcontent" element={<Showcontent/>}/>
+        <Route path="/accordion" element={<Accordionuse/>}/>
+        <Route path="/formikuse" element={<Formikuse/>}/>
+        <Route path="/formikpractice" element={<Formikpractice/>}/>
+        <Route path="/hookcounterone" element={<HookCounterOne/>}/>
+        <Route path="/hookcounter" element={<HookCounter/>}/>
+        <Route path="/hookmouse" element={<HookMouse/>}/>
+        <Route path="/mousecontainer" element={<MouseContainer/>}/>
+        <Route path="/intervalhookcounter" element={<IntervalHookCounter/>}/>
+        <Route path="/datafetching" element={<DataFetching/>}/>
       </Routes>
     </Router>
   </React.StrictMode>
+  // <App/>
 );
 
 // If you want to start measuring performance in your app, pass a function
