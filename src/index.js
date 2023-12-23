@@ -31,7 +31,6 @@ import IntervalHookCounter from "./IntervalHookCounter";
 import DataFetching from "./DataFetching";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -68,6 +67,7 @@ root.render(
     </Router>
   </React.StrictMode>
   // <App/>
+  
 );
 
 // If you want to start measuring performance in your app, pass a function
