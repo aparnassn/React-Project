@@ -13,10 +13,13 @@
     "react-bootstrap": "^1.6.7",
     "react-buttons": "0.0.11",
     "react-dom": "^18.2.0",
+    "react-font-style": "0.0.11",
     "react-icons": "^4.12.0",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.20.1",
     "react-scripts": "5.0.1",
+    "react-text-area": "^0.1.0",
+    "react-textarea-autosize": "^8.5.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

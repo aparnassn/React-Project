@@ -29,7 +29,10 @@ import HookMouse from "./HookMouse";
 import MouseContainer from "./MouseContainer";
 import IntervalHookCounter from "./IntervalHookCounter";
 import DataFetching from "./DataFetching";
+import Blogim from "./Blogim"
+import NewImage from "./NewImage";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Gallery from "./Gallery";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -63,6 +66,9 @@ root.render(
         <Route path="/mousecontainer" element={<MouseContainer/>}/>
         <Route path="/intervalhookcounter" element={<IntervalHookCounter/>}/>
         <Route path="/datafetching" element={<DataFetching/>}/>
+        <Route path="/blog" element={<Blogim/>}/>
+        <Route path="/newimage" element={<NewImage/>}/>
+        <Route path="/gallery" element={<Gallery/>}/>
       </Routes>
     </Router>
   </React.StrictMode>
