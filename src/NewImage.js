@@ -6,24 +6,73 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import TextareaAutosize from "react-textarea-autosize";
 import Nav from "react-bootstrap/Nav";
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function NewImage() {
-  const [data,setData]=useState([])
+  const [data, setData] = useState([]);
 
-  const getData=()=>{
-    axios.get(`https://jsonplaceholder.typicode.com/todos`)
-    .then((res => setData(res.data)))
+  const [title, setTitle] = useState("");
+  const [des, setDes] = useState("");
+  const [author, setAuthor] = useState("");
+  const [image, setImage] = useState("");
+
+ 
+  
+  // const [inputdata, setInputData] = useState({
+  //   title: "",
+  //   des: "",
+  //   author: "",
+  //   image: "",
+  // });
+
+  // let arr = []
+  // arr.push(inputdata)
+  // console.log(arr)
+  const navigate = useNavigate();
+  console.log({data})
+
+  function handleClick() {
+
+    
   }
-  useEffect(()=>{
-    getData()
-  },[])
+
+  // function validateInput() {
+  //   if (!data.title.length > 0) {
+  //     alert("enter all fields");
+  //     return false;
+  //   }
+
+  //   if (data.des.length < 16) {
+  //     alert("description must be atleast 16 characters");
+  //     return false;
+  //   }
+
+  //   if (!data.author.length > 0) {
+  //     alert("enter all fields");
+  //     return false;
+  //   }
+  //   if (!data.image.length > 0) {
+  //     alert("enter all fields");
+  //     return false;
+  //   } else {
+  //     window.location.replace("/newimage");
+  //     return true;
+  //   }
+  // }
+
   return (
     <div>
       <Nav className="justify-content-start" activeKey="/home">
         <Nav.Item>
-          <Nav.Link style={{ fontFamily: "Georgia,serif", padding: "20px",color:"#ff0057" }}>
+          <Nav.Link
+            style={{
+              fontFamily: "Georgia,serif",
+              padding: "20px",
+              color: "#ff0057",
+            }}
+          >
             <h3>Blogim!!</h3>
           </Nav.Link>
         </Nav.Item>
@@ -51,7 +100,7 @@ function NewImage() {
           </Nav.Item>
           <Nav.Item>
             <Nav.Link
-            href="/gallery"
+              href="/gallery"
               eventKey="link-2"
               style={{ fontFamily: "Georgia,serif", padding: "20px" }}
             >
@@ -94,11 +143,18 @@ function NewImage() {
                     <input
                       type="text"
                       placeholder="Image"
+                      name="title"
+                      value={data.title}
                       style={{ width: "300px", height: "45px" }}
+                      onChange={(e) => setData(e.target.value)}
                     ></input>
                     <h6>Image Description:</h6>
                     <TextareaAutosize
-                      style={{ width: "300px", height: "95px" }}
+                      style={{ width: "300px", height: "100px" }}
+                      name="des"
+                      value={data.des}
+                      placeholder=" This image is the most amazing image as i have ever taken"
+                      onChange={(e) => setData(e.target.value)}
                     >
                       This image is the most amazing image as i have ever taken
                     </TextareaAutosize>
@@ -106,17 +162,25 @@ function NewImage() {
                     <input
                       type="text"
                       placeholder="Yossi As"
+                      name="author"
+                      value={data.author}
                       style={{ width: "300px", height: "45px" }}
+                      onChange={(e) => setData(e.target.value)}
                     ></input>
                     <h6>Enter your Image:</h6>
                     <input
                       type="text"
                       placeholder="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRssK4b3rN8eNRP62msKifMLeOmzZrCup4YAA&s"
+                      name="image"
+                      value={data.image}
                       style={{ width: "300px", height: "45px" }}
+                      onChange={(e) => setData(e.target.value)}
                     ></input>
 
                     <center style={{ padding: "10px" }}>
-                      <Button variant="primary">Add Image</Button>
+                      <Button variant="primary" onClick={handleClick}>
+                        Add Image
+                      </Button>
                     </center>
                   </Form>
                 </Card.Body>
@@ -125,6 +189,19 @@ function NewImage() {
           </Row>
         </Container>
       </div>
+      {data.map((d)=>(
+        <Card style={{ width: '18rem' }}>
+        <Card.Img variant="top" src="holder.js/100px180" />
+        <Card.Body>
+          <Card.Title>{d.title}</Card.Title>
+          <Card.Text>
+            {d.des}
+          </Card.Text>
+          <Button variant="primary">Go somewhere</Button>
+        </Card.Body>
+      </Card>
+
+      ))}
     </div>
   );
 }

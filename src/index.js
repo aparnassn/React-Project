@@ -31,8 +31,10 @@ import IntervalHookCounter from "./IntervalHookCounter";
 import DataFetching from "./DataFetching";
 import Blogim from "./Blogim"
 import NewImage from "./NewImage";
+import BlogCards from "./BlogCards";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Gallery from "./Gallery";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -69,6 +71,7 @@ root.render(
         <Route path="/blog" element={<Blogim/>}/>
         <Route path="/newimage" element={<NewImage/>}/>
         <Route path="/gallery" element={<Gallery/>}/>
+        <Route path="/blogcards" element={<BlogCards/>}/>
       </Routes>
     </Router>
   </React.StrictMode>
