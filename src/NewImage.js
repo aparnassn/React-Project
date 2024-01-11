@@ -9,34 +9,17 @@ import Nav from "react-bootstrap/Nav";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
+import { ImageList } from "./ImageList";
 
 function NewImage() {
-  const [data, setData] = useState([]);
-
-  const [title, setTitle] = useState("");
-  const [des, setDes] = useState("");
-  const [author, setAuthor] = useState("");
-  const [image, setImage] = useState("");
-
- 
-  
-  // const [inputdata, setInputData] = useState({
-  //   title: "",
-  //   des: "",
-  //   author: "",
-  //   image: "",
-  // });
-
-  // let arr = []
-  // arr.push(inputdata)
-  // console.log(arr)
   const navigate = useNavigate();
-  console.log({data})
+  
+  const [data, setData] = useState([]);
+  console.log(data);
 
-  function handleClick() {
+  
 
-    
-  }
+  function handleClick() {}
 
   // function validateInput() {
   //   if (!data.title.length > 0) {
@@ -146,7 +129,11 @@ function NewImage() {
                       name="title"
                       value={data.title}
                       style={{ width: "300px", height: "45px" }}
-                      onChange={(e) => setData(e.target.value)}
+                      onChange={(e) => {
+                        setData((o) => {
+                          return { ...o, title: e.target.value };
+                        });
+                      }}
                     ></input>
                     <h6>Image Description:</h6>
                     <TextareaAutosize
@@ -154,7 +141,11 @@ function NewImage() {
                       name="des"
                       value={data.des}
                       placeholder=" This image is the most amazing image as i have ever taken"
-                      onChange={(e) => setData(e.target.value)}
+                      onChange={(e) => {
+                        setData((o) => {
+                          return { ...o, des: e.target.value };
+                        });
+                      }}
                     >
                       This image is the most amazing image as i have ever taken
                     </TextareaAutosize>
@@ -165,7 +156,11 @@ function NewImage() {
                       name="author"
                       value={data.author}
                       style={{ width: "300px", height: "45px" }}
-                      onChange={(e) => setData(e.target.value)}
+                      onChange={(e) => {
+                        setData((o) => {
+                          return { ...o, author: e.target.value };
+                        });
+                      }}
                     ></input>
                     <h6>Enter your Image:</h6>
                     <input
@@ -178,7 +173,7 @@ function NewImage() {
                     ></input>
 
                     <center style={{ padding: "10px" }}>
-                      <Button variant="primary" onClick={handleClick}>
+                      <Button variant="primary" onClick={()=>{handleClick();navigate("/gallery")}}>
                         Add Image
                       </Button>
                     </center>
@@ -189,19 +184,7 @@ function NewImage() {
           </Row>
         </Container>
       </div>
-      {data.map((d)=>(
-        <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
-        <Card.Body>
-          <Card.Title>{d.title}</Card.Title>
-          <Card.Text>
-            {d.des}
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-      </Card>
-
-      ))}
+      
     </div>
   );
 }

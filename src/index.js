@@ -31,9 +31,12 @@ import IntervalHookCounter from "./IntervalHookCounter";
 import DataFetching from "./DataFetching";
 import Blogim from "./Blogim"
 import NewImage from "./NewImage";
-import BlogCards from "./BlogCards";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Gallery from "./Gallery";
+import ShopApp from "./ShopApp";
+import PickColor from "./PickColor";
+import SignUp from "./SignUp";
+import StopWatchApp from "./StopWatchApp";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -71,7 +74,11 @@ root.render(
         <Route path="/blog" element={<Blogim/>}/>
         <Route path="/newimage" element={<NewImage/>}/>
         <Route path="/gallery" element={<Gallery/>}/>
-        <Route path="/blogcards" element={<BlogCards/>}/>
+        <Route path="/blogim" element={<Blogim/>}/>
+        <Route path="/shopapp" element={<ShopApp/>}/>
+        <Route path="/pickcolor" element={<PickColor/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
+        <Route path="stopwatchapp" element={<StopWatchApp/>}/>
       </Routes>
     </Router>
   </React.StrictMode>
