@@ -1,5 +1,6 @@
 body{
     background: #2C3E50;
+    transition: background 1s ease-out;
 }
 
 *{
@@ -50,6 +51,7 @@ body{
     width : 150px;
     transition: background 1s;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .stopwatch .stopwatch-btn-red{
