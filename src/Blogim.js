@@ -7,6 +7,8 @@ import Col from "react-bootstrap/Col";
 
 function Blogim() {
   const navigate = useNavigate();
+
+
   return (
     <div>
       <Nav className="justify-content-start" activeKey="/blog">

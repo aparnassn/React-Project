@@ -37,6 +37,9 @@ import ShopApp from "./ShopApp";
 import PickColor from "./PickColor";
 import SignUp from "./SignUp";
 import StopWatchApp from "./StopWatchApp";
+import ReadingMap from "./ReadingMap";
+import SearchApp from "./SearchApp";
+import ParentComponent from "./ParentComponent";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -78,7 +81,10 @@ root.render(
         <Route path="/shopapp" element={<ShopApp/>}/>
         <Route path="/pickcolor" element={<PickColor/>}/>
         <Route path="/signup" element={<SignUp/>}/>
-        <Route path="stopwatchapp" element={<StopWatchApp/>}/>
+        <Route path="/stopwatchapp" element={<StopWatchApp/>}/>
+        <Route path="/readingmap" element={<ReadingMap/>}/>
+        <Route path="/searchapp" element={<SearchApp/>}/>
+        <Route path="/parentcomponent" element={<ParentComponent/>}/>
       </Routes>
     </Router>
   </React.StrictMode>
