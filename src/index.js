@@ -40,14 +40,18 @@ import StopWatchApp from "./StopWatchApp";
 import ReadingMap from "./ReadingMap";
 import SearchApp from "./SearchApp";
 import ParentComponent from "./ParentComponent";
+import Provider from "./BlogCardsA";
+import Cart from "./Cart";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    {/* <ShopApp/> */}
+     <Provider>
     <Router>
       <Routes>
-        
+       
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/form" element={<Userform />} />
@@ -85,8 +89,11 @@ root.render(
         <Route path="/readingmap" element={<ReadingMap/>}/>
         <Route path="/searchapp" element={<SearchApp/>}/>
         <Route path="/parentcomponent" element={<ParentComponent/>}/>
+        <Route path="/cart" element={<Cart/>}/>
+        
       </Routes>
     </Router>
+    </Provider> 
   </React.StrictMode>
   // <App/>
   

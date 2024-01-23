@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Link } from "@reach/router";
 
 function Blogim() {
   const navigate = useNavigate();
-
 
   return (
     <div>
@@ -55,13 +55,14 @@ function Blogim() {
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link
+            {/* <Nav.Link
               href="/newimage"
               eventKey="link-3"
               style={{ fontFamily: "Georgia,serif", padding: "20px" }}
             >
               New Image
-            </Nav.Link>
+            </Nav.Link> */}
+            <Link to="gallery"/>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link

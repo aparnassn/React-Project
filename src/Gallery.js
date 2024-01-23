@@ -4,11 +4,13 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import NewImage from "./NewImage";
-import ImageList from "./ImageList";
+// import ImageList from "./ImageList";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import styled from "styled-components";
 //import { GlobalStyle } from "./globalStyles";
+import { useContent } from "./BlogCardsA";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -29,13 +31,27 @@ const Button = styled.button`
 `;
 
 function Gallery() {
-  const [data, setData] = useState(ImageList);
-  const [showModal, setShowModal] = useState(false);
+  // const [data, setData] = useState(ImageList);
+  // const [showModal, setShowModal] = useState(false);
+  const { data,setData } = useContent();
+  console.log({ data });
 
-  const openModal = () => {
-    setShowModal((showModal) => !showModal);
-  };
+  //const list = ["hello", "snjks"];
 
+  const [list,setList]=useState([])
+
+  const [itemList, setItemList] = useState(list);
+  console.log(itemList);
+
+  function SearchItem(e) {
+    var content = e.target.value;
+    var updatedlist = [...list];
+
+    updatedlist = updatedlist.filter((f) => {
+      return f.toLowerCase().indexOf(content.toLowerCase()) !== -1;
+    });
+    setItemList(updatedlist);
+  }
   return (
     <div>
       <Nav className="justify-content-start" activeKey="/home">
@@ -65,36 +81,43 @@ function Gallery() {
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link
+            {/* <Nav.Link
               eventKey="link-1"
               style={{ fontFamily: "Georgia,serif", padding: "20px" }}
             >
               New Blog
-            </Nav.Link>
+            </Nav.Link> */}
+            <Link to="/newblog"> New Blog</Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link
+            {/* <Nav.Link
               eventKey="link-2"
               style={{ fontFamily: "Georgia,serif", padding: "20px" }}
             >
               Gallery
-            </Nav.Link>
+            </Nav.Link> */}
+            <Link to="/gallery">Gallery</Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link
+            {/* <Nav.Link
               href="/newimage"
               eventKey="link-3"
               style={{ fontFamily: "Georgia,serif", padding: "20px" }}
             >
               New Image
-            </Nav.Link>
+            </Nav.Link> */}
+            <Link to="/newimage"> New Image</Link>
           </Nav.Item>
         </Nav>
       </Nav>
       <Form>
         <Row style={{ justifyContent: "center" }}>
           <Col xs="auto">
-            <Form.Control type="text" placeholder="Search book title" />
+            <Form.Control
+              type="text"
+              placeholder="Search book title"
+              onChange={SearchItem}
+            ></Form.Control>
           </Col>
         </Row>
       </Form>
@@ -102,34 +125,21 @@ function Gallery() {
         {data.map((d) => (
           <div className="col-sm-4 py-3">
             <Card style={{ width: "18rem" }}>
-              <Card.Body>
-                <Container>
-                <Button>
-                  <Card.Img src={d.image} onClick={openModal}></Card.Img>
-                  <Modal showModal={showModal} setShowModal={setShowModal} />
-                  {/* <GlobalStyle /> */}
-                </Button>
-                </Container>
+              <Card.Body >
+                <Card.Img src={d.image}></Card.Img>
+                <h4>Title:</h4>
+                {d.title}
+                <br />
+                <h4>Author</h4>
+                {d.author}
+                <br />
+                <h4>Description</h4> {d.des}
                 <Card.Title style={{ padding: 10 }}>{d.title}</Card.Title>
                 <Card.Text>{d.des}</Card.Text>
               </Card.Body>
             </Card>
           </div>
         ))}
-        <div className="one">
-          <p>
-            This quotation for Faulkner's 1936 novel comes from the Books of
-            Samuel more specifically, 19:4 in 2 Samuel, which is in the Old
-            Testament and relates some of the history of Israel. Absalom, the
-            third son of David, rebelled against his father and was killed in
-            battle. The full Biblical sentence is But the king covered his face,
-            and the king cried with a loud voice, O my son Absalom, O Absalom,
-            my son, my son! Faulkner was a big fan of borrowed titles: his 1939
-            If I Forget Thee, Jerusalem is also from the Bible, Psalms 137:5.
-            The line in question is If I forget thee, Jerusalem, let my right
-            hand forget its skill.
-          </p>
-        </div>
       </div>
     </div>
   );

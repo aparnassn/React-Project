@@ -2,9 +2,12 @@ import React from "react";
 import useShop from "./ShopContext";
 import ProductCard from "./ProductCard";
 import styled from "styled-components";
+import { useContent } from "./BlogCardsA";
 
 function Cart() {
   const { products, total } = useShop();
+  const {data}=useContent()
+  console.log(data)
   return (
     <div>
       <Title>Your cart total is {total}.00$</Title>

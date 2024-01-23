@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Link, redirect } from "react-router-dom";
+import useShop from "./ShopContext";
 
 function Login() {
+  const state =useShop()
+  console.log(state )
   const [emailid, setEmailid] = useState("");
   const [password, setPassword] = useState("");
 

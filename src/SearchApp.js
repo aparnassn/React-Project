@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 
 function SearchApp() {
-  const itemList = () => [
+  const itemList = [
     "Google",
     "Microsoft",
     "Finnovo",
@@ -12,7 +12,8 @@ function SearchApp() {
     "Twitter",
   ];
 
-  const [filteredList, setFilteredList] = new useState(itemList);
+  const [filteredList, setFilteredList] = useState(itemList);
+  console.log(filteredList)
 
   function filterBySearch(e) {
     var query = e.target.value;

@@ -7,20 +7,36 @@ import Form from "react-bootstrap/Form";
 import TextareaAutosize from "react-textarea-autosize";
 import Nav from "react-bootstrap/Nav";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import { ImageList } from "./ImageList";
+import { useContent } from "./BlogCardsA";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 function NewImage() {
   const navigate = useNavigate();
+  const {data, setData} =useContent()
+  const [formData, setFormData] = useState({
+    title : "",
+    des : "",
+    author : "",
+    image : ""
+  });
+  //console.log(formData);
   
-  const [data, setData] = useState([]);
-  console.log(data);
+  function handleClick() {
+   setData((o)=>([...o,formData]))
+   setFormData({
+    title : "",
+    des : "",
+    author : "",
+    image : ""
+  })
 
   
-
-  function handleClick() {}
-
+  }
+console.log(data)
+  // setData()
   // function validateInput() {
   //   if (!data.title.length > 0) {
   //     alert("enter all fields");
@@ -44,6 +60,7 @@ function NewImage() {
   //     return true;
   //   }
   // }
+  
 
   return (
     <div>
@@ -74,30 +91,33 @@ function NewImage() {
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link
+            {/* <Nav.Link
               eventKey="link-1"
               style={{ fontFamily: "Georgia,serif", padding: "20px" }}
             >
               New Blog
-            </Nav.Link>
+            </Nav.Link> */}
+            <Link to="/newblog"> New Blog</Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link
+            {/* <Nav.Link
               href="/gallery"
               eventKey="link-2"
               style={{ fontFamily: "Georgia,serif", padding: "20px" }}
             >
               Gallery
-            </Nav.Link>
+            </Nav.Link> */}
+             <Link to="/gallery"> Gallery</Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link
+            {/* <Nav.Link
               href="/newimage"
               eventKey="link-3"
               style={{ fontFamily: "Georgia,serif", padding: "20px" }}
             >
-              New Image
-            </Nav.Link>
+              
+            </Nav.Link> */}
+             <Link to="/newimage"> New Image</Link>
           </Nav.Item>
         </Nav>
       </Nav>
@@ -106,7 +126,7 @@ function NewImage() {
         className="d-flex justify-content-center align-items-center"
         style={{ height: "100vh" }}
       >
-        <Container style={{ width: "400px", height: "500px" }}>
+          <Container style={{ width: "400px", height: "500px" }}>
           <Row>
             <Card>
               <Col>
@@ -127,10 +147,10 @@ function NewImage() {
                       type="text"
                       placeholder="Image"
                       name="title"
-                      value={data.title}
+                      value={formData.title}
                       style={{ width: "300px", height: "45px" }}
                       onChange={(e) => {
-                        setData((o) => {
+                        setFormData((o) => {
                           return { ...o, title: e.target.value };
                         });
                       }}
@@ -139,10 +159,10 @@ function NewImage() {
                     <TextareaAutosize
                       style={{ width: "300px", height: "100px" }}
                       name="des"
-                      value={data.des}
+                      value={formData.des}
                       placeholder=" This image is the most amazing image as i have ever taken"
                       onChange={(e) => {
-                        setData((o) => {
+                        setFormData((o) => {
                           return { ...o, des: e.target.value };
                         });
                       }}
@@ -154,10 +174,10 @@ function NewImage() {
                       type="text"
                       placeholder="Yossi As"
                       name="author"
-                      value={data.author}
+                      value={formData.author}
                       style={{ width: "300px", height: "45px" }}
                       onChange={(e) => {
-                        setData((o) => {
+                        setFormData((o) => {
                           return { ...o, author: e.target.value };
                         });
                       }}
@@ -167,9 +187,11 @@ function NewImage() {
                       type="text"
                       placeholder="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRssK4b3rN8eNRP62msKifMLeOmzZrCup4YAA&s"
                       name="image"
-                      value={data.image}
+                      value={formData.image}
                       style={{ width: "300px", height: "45px" }}
-                      onChange={(e) => setData(e.target.value)}
+                      onChange={(e) => setFormData((o)=>{
+                        return {...o,image:e.target.value}
+                      })}
                     ></input>
 
                     <center style={{ padding: "10px" }}>
@@ -190,3 +212,5 @@ function NewImage() {
 }
 
 export default NewImage;
+
+// ;navigate("/gallery")
